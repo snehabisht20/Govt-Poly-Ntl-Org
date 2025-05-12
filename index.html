@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Government Polytechnic Nainital, established in 1957, offers cutting-edge diploma courses in engineering, pharmacy, and office management. Explore our dynamic campus, upcoming events, and vibrant community in Uttarakhand.">
+    <meta name="keywords" content="Government Polytechnic Nainital, diploma courses, engineering, pharmacy, office management, Uttarakhand, campus tour, events, gallery">
+    <meta name="author" content="Government Polytechnic Nainital">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Government Polytechnic Nainital">
+    <meta property="og:description" content="Discover innovative diploma courses, a vibrant campus, and exciting events at Government Polytechnic Nainital, Uttarakhand.">
+    <meta property="og:image" content="https://thcf.bing.com/th/id/OIP.iKl7XJdApT4JaRcMKyLbjgAAAA?w=229&h=229&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2">
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <div id="progress-bar">
+    </div>
+    <div id="announcement-bar"><p>Admissions Open 2025-26! <a href="#contact">Contact</a></p><span>×</span></div>
+  
+    <div><button id="dark-mode-toggle">🌙</button></div>
+    <aside id="sidebar">
+        <a href="hero">Home</a><a href="about us.html">About</a><a href="Courses.html">Courses</a><a href="Gallery.html">Gallery</a><a href="#Contact">Contact</a>
+    </aside>
+    <nav>
+        <span class="hamburger">☰</span>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <div class="dropdown"><a href="#">About ▾</a><div class="dropdown-content"><a href="About Us.html">About</a><a href="vision_&_mission.html">Vision</a></div></div>
+            <a href="#courses">Courses</a>
+            <div class="dropdown"><a href="#">Facilities ▾</a><div class="dropdown-content"><a href="Smartclass.html">Smart Classes</a><a href="Library.html">Library</a></div></div>
+            <a href="#gallery">Gallery</a><a href="#contact">Contact</a>
+        </div>
+    </nav>
+    <section id="hero">
+        <div id="hero-slideshow">
+            <div class="slide active" style="background-image: url('https://via.placeholder.com/1920x600?text=Campus+1');"></div>
+            <div class="slide" style="background-image: url('https://via.placeholder.com/1920x600?text=Campus+2');"></div>
+        </div>
+        <div class="slideshow-dots"><span class="dot active" data-index="0"></span><span class="dot" data-index="1"></span></div>
+        <img src="https://thcf.bing.com/th/id/OIP.iKl7XJdApT4JaRcMKyLbjgAAAA?w=229&h=229&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="Logo" style="width: 200px; border-radius: 100%;">
+        <h1>Government Polytechnic Nainital</h1>">
+        <p>Since 1957.</p>
+        <button onclick="location.href='#courses'">Courses</button>
+    </section>
+    <section id="about" class="card">
+        <h1>About Us</h1>
+        <p>Established in 1957, offering diploma courses in engineering and pharmacy.</p>
+        <div class="card inner-card">
+            <h1>Principal's Desk</h1>
+            <img src="principal sir photo.jpeg" alt="Principal" style="width: 200px;">
+            <p>Shaping future leaders. - Mr. A.K.S Gaur</p>
+        </div>
+    </section>
+
+    <section id="courses" class="card">
+        <h1>Courses</h1>
+        <div class="course-container">
+        <div id="course-filter">
+            <select id="course-category"><option value="all">All</option><option value="engineering">Engineering</option><option value="pharmacy">Pharmacy</option></select>
+            <input type="text" id="course-search" placeholder="Search">
+        </div>
+        </section>
+        <div class="course-container">
+            <div class="course-card" data-category="engineering"><h3>Civil Engineering</h3><p>"Civil Engineering shapes the world with structures that stand the test of time. From bridges to buildings, it builds the foundation of modern society."</p><button>Learn More</button></div>
+            <div class="course-card" data-category="pharmacy"><h3>Pharmacy</h3><p>"Pharmacy blends science and care to ensure health and healing. It transforms knowledge into life-saving medicines and better patient outcomes."</p><button>Learn More</button></div>
+        </div>
+        <div class="course-container">
+            <div class="course-card" data-category="engineering"><h3>Electronics Engineering</h3><p> **"Electronics Engineering powers the world through innovation and intelligent design. From microchips to smart systems, it shapes the future of technology."**</p><button>Learn More</button></div>
+            <div class="course-card" data-category="engineering"><h3>Electrical engineering</h3><p>"Electrical Engineering lights up the world with innovation and energy. It drives progress through power systems, circuits, and smart technology."</p><button>Learn More</button></div>
+        </div>
+        <div class="course-container">
+            <div class="course-card" data-category="engineering"><h3>Information Technology</h3><p>"Information Technology connects the world through data and digital innovation. It empowers businesses and transforms lives with smart solutions and systems."</p><button>Learn More</button></div>
+            <div class="course-card" data-category="engineering"><h3>Mechanical engineering</h3><p>"Mechanical Engineering drives the world with machines, motion, and innovation. From engines to automation, it builds the backbone of modern industry."</p><button>Learn More</button></div>
+        </div>
+    </section>
+    <section id="gallery" class="card">
+        <h2>Gallery</h2>
+        <div id="gallery-filter">
+            <button data-filter="all" class="active">All</button><button data-filter="campus">Campus</button><button data-filter="events">Events</button>
+        </div>
+        <div id="video-carousel">
+            <div id="video-container">
+                <video src="WhatsApp Video 2025-05-06 at 5.11.36 AM.mp4" controls></video>
+                <video src="WhatsApp Video 2025-05-06 at 5.11.35 AM.mp4" controls></video>
+                <video src="gp video.mp4" controls></video>
+            </div>
+            <button class="carousel-nav" id="prev-video">←</button>
+            <button class="carousel-nav" id="next-video">→</button>
+        </div>
+        <div id="divimage">
+            <img src="campus.jpg" alt="Campus" data-category="campus">
+            <img src="Civil1.jpg" alt="Civil1" data-category="Civil1">
+            <img src="Civil2.jpg" alt="Civil2" data-category="Civil2">
+            <img src="College Actvitty.jpg" alt="College Actvitty" data-category="College Actvitty">
+            <img src="College events.jpg" alt="College Events" data-category="College Events">
+            <img src="Deepak bahuguna.jpg" alt="Deepak bahuguna" data-category="Deepak bahuguna">
+            <img src="Govtpoly.jpg" alt="Govtpoly" data-category="Govtpoly">
+            <img src="gp.gate.jpg" alt="gp.gate" data-category="gp.gate">
+            <img src="heading.png" alt="heading" data-category="heading">
+            <img src="Library.jpg" alt="Library" data-category="Library">
+            <img src="Pharmacy practical.jpg" alt="Pharmacy practical" data-category="Pharmacy practical">
+            <img src="Pharmacy.jpg" alt="Pharmacy" data-category="Pharmacy">
+            <img src="Screenshot (1).png" alt="Screenshot (1)" data-category="Screenshot (1)">
+            <img src="Screenshot (4).png" alt="Screenshot (4)" data-category="Screenshot (4)">
+            <img src="Sport Event.jpg" alt="Sport Event" data-category="Sport Event">
+            <img src="Sports2.jpg" alt="Sports2" data-category="Sports2">
+            <img src="Sports3.jpg" alt="Sports3" data-category="Sports3">
+            <img src="Voting campaign.jpg" alt="Voting campaign" data-category="Voting campaign">
+            <img src="WhatsApp Image 2025-05-11 at 11.36.56 PM (1).jpeg" alt="Campus" data-category="campus">
+            <img src="WhatsApp Image 2025-05-11 at 11.36.56 PM (2).jpeg" alt="Campus" data-category="campus">
+            <img src="WhatsApp Image 2025-05-11 at 11.36.56 PM (3).jpeg" alt="Campus" data-category="campus">
+            <img src="WhatsApp Image 2025-05-11 at 11.36.57 PM (1).jpeg" alt="Campus" data-category="campus">
+            <img src="WhatsApp Image 2025-05-11 at 11.36.57 PM (2).jpeg" alt="Campus" data-category="campus">
+            <img src="WhatsApp Image 2025-05-11 at 11.36.57 PM (6).jpeg" alt="Campus" data-category="campus">
+            <img src="WhatsApp Image 2025-05-11 at 11.36.57 PM.jpeg" alt="Campus" data-category="campus">
+            <img src="WhatsApp Image 2025-05-11 at 11.36.58 PM.jpeg" alt="Campus" data-category="campus">
+        </div>
+    </section>
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">×</span>
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption"></div>
+    </div>
+    <section id="testimonials" class="card">
+        <h1>Testimonials</h1>
+        <div id="testimonial-carousel">
+            <div class="testimonial-container">
+                <div class="testimonial"><p>"Great training!"</p><h4>Rahul, Alumni</h4></div>
+                <div class="testimonial"><p>"Amazing campus!"</p><h4>Priya, Student</h4></div>
+            </div>
+            <button class="carousel-nav" id="prev-testimonial">←</button>
+            <button class="carousel-nav" id="next-testimonial">→</button>
+        </div>
+    </section>
+    <section id="events" class="card">
+        <h1>Events</h1>
+        <div class="event-grid">
+            <div class="event-card"><h1>Tech Fest</h1><p>June 15, 2025</p></div>
+        </div>
+    </section>
+    <section id="social-feed" class="card">
+        <h1>Social Feed</h1>
+        <div class="social-post-grid">
+            <div class="social-post"><p>Tech Fest 2025! #GPNainital</p></div>
+        </div>
+    </section>
+    <section id="sec3">
+        <div><h1 id="Ql">Quick links</h1>
+        <ul id="Links"></div>
+            <section>
+            <div>
+            <li><a class="implinks" href="Academicbody.html">ACADEMIC BODY</a></li>
+            <li><a class="implinks" href="https://www.ubter.in/">UBTER, ROORKEE</a></li>
+            <li><a class="implinks" href="https://www.aicte-india.org/">AICTE WEB PORTAL</a></li>
+            <li><a class="implinks" href="http://www.gpnainital.org/rules_regulation.aspx">RULES &
+            REGULATION</a> </li>
+            <li><a class="implinks" href="Anti-ragging.html">ANTIRAGGING CAMPAIGN</a></li>
+            <li><a class="implinks" href="https://www.pci.nic.in/">PCI</a></li>
+            <li><a class="implinks" href="http://ukdte.in/">UKDTE</a></li>
+            <li><a class="implinks" href="https://go.uk.gov.in/">G.O UTTARAKHAND</a></li>
+            <li><a class="implinks" href="https://www.irdtuttarakhand.org.in/"> IRDT </a></li>
+            <li><a class="implinks" href="https://irdtuttarakhand.org.in/irdt1/irdt-download.aspx">IRDT
+            E-SYLLABUS</a></li>
+            <li><a class="implinks" href="Nccform.html">Join NCC</a></li>
+            <li><a class="implinks" href="Nssform.html">Join Nss</a></li>
+            <li><a class="implinks" href="https://www.pci.nic.in/">APPRENTICESHIP</a></li>
+            <li><a class="implinks" href="http://www.gpnainital.org/contact_us.aspx"> FEEDBACK</a></li>
+        </ul></div>
+    </section>
+    </section>
+    <section id="contact" class="card">
+        <h1>Contact</h1>
+        <p>Email: <a href="mailto:govtpoly_ntl@rediffmail.com">govtpoly_ntl@rediffmail.com</a></p>
+        <form id="contact-form">
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <footer>
+        <div><h2>Government Polytechnic Nainital</h2><p>Since 1957.</p></div>
+        <div><p>Sherwani, Nainital<br><a href="tel:+915942236251">05942-236251</a></p></div>
+        <div><p>© 2025</p></div>
+    </footer>
+    <button id="back-to-top">↑</button>
+    <script src="script.js"></script>
+</body>
+</html>
