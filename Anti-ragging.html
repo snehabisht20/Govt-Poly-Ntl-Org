@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Ragging Campaign - Government Polytechnic Nainital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== Color Scheme ===== */
+        :root {
+            --primary: #8e24aa; /* Deep violet */
+            --secondary: #7e5597; /* Deep plum */
+            --bg: #fff0f5; /* Lavender blush */
+            --text: #2a2a2a; /* Dark gray */
+            --accent: #ad1457; /* Crimson rose */
+            --light-blush: #fce4ec; /* Very light blush */
+            --white: #ffffff;
+        }
+
+        /* Reset & Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #top {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        #logo {
+            width: 100px;
+            height: 100px;
+            border: 4px solid var(--white);
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        #logo:hover {
+            transform: scale(1.05);
+        }
+
+        #Top-Head {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        #Est {
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        nav {
+            background: transparent;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            position: relative;
+            margin-left: 0.8rem;
+        }
+
+        .nav-menu li a {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a:focus {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            min-width: 180px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .dropdown.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown li a {
+            color: var(--text);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .dropdown li a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .search-toggle {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .search-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .search-form {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-form.active {
+            display: block;
+        }
+
+        .search-form input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        #AntiRagging {
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            text-decoration: underline;
+            margin: 2rem 0;
+        }
+
+        section {
+            background: var(--light-blush);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        section h2 {
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonial Slider */
+        #testimonials {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .testimonial-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            background: var(--light-blush);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .testimonial-slide img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+            border: 3px solid var(--accent);
+        }
+
+        .testimonial-slide p {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-slide h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .testimonial-nav span {
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .testimonial-nav span.active {
+            background: var(--accent);
+        }
+
+        /* Infographic */
+        #infographic {
+            margin: 2rem 0;
+        }
+
+        .infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .infographic-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--light-blush);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .infographic-item:hover {
+            transform: scale(1.05);
+        }
+
+        .infographic-item svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 0.5rem;
+        }
+
+        .infographic-item span {
+            display: block;
+            color: var(--accent);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .infographic-item p {
+            font-size: 0.95rem;
+        }
+
+        /* Downloadable Resources */
+        #resources {
+            margin: 2rem 0;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--light-blush);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .resource-card a {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin-top: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .resource-card a:hover {
+            background: var(--secondary);
+            text-decoration: none;
+        }
+
+        /* Pledge Counter */
+        #pledge-counter {
+            text-align: center;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        #pledge-counter h2 {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        #pledge-counter span {
+            color: var(--accent);
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Forms */
+        form {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        input[aria-invalid="true"],
+        textarea[aria-invalid="true"] {
+            border-color: var(--accent);
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        button {
+            background: var(--primary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover,
+        button:focus {
+            background: var(--secondary);
+            outline: none;
+        }
+
+        .form-message {
+            display: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .form-message.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .error-message {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-top: -0.8rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Quick Links Section */
+        #quick-links {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        #quick-links h2 {
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #quick-links ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        #quick-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            padding: 0.75rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            color: var(--accent);
+            transition: background 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        #quick-links li a img {
+            width: 20px;
+            height: 20px;
+        }
+
+        #quick-links li a:hover {
+            background: var(--accent);
+            color: var(--white);
+            transform росій: translateY(-3px);
+            text-decoration: none;
+        }
+
+        /* CTA Button */
+        .cta {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta a {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .cta a:hover,
+        .cta a:focus {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+            border-radius: 12px;
+        }
+
+        #footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            text-align: left;
+        }
+
+        #divfoot {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        #Git {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            text-decoration: underline;
+            margin-bottom: 1rem;
+        }
+
+        #contact_us {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-media a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-media a:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        #author {
+            color: var(--white);
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            margin: 1rem 0;
+        }
+
+        #Copyright {
+            color: var(--white);
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 2px solid var(--accent);
+            padding-top: 1rem;
+        }
+
+        /* Back-to-Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            #top, .nav-container, main, footer {
+                max-width: 1200px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            #footer {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-links {
+                grid-column: 1 / -1;
+                text-align: center;
+            }
+
+            .infographic-grid, .resource-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+                padding: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0.4rem 0;
+            }
+
+            .dropdown {
+                position: static;
+                background: var(--white);
+                backdrop-filter: none;
+                box-shadow: none;
+            }
+
+            .search-form {
+                width: 100%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            #logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            #Top-Head {
+                font-size: 1.4rem;
+            }
+
+            #AntiRagging {
+                font-size: 2rem;
+            }
+
+            section {
+                margin: 0 0.8rem;
+            }
+
+            .infographic-grid, .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #footer {
+                grid-template-columns: 1fr;
+            }
+
+            .social-media {
+                justify-content: center;
+            }
+
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 1rem;
+            }
+
+            .testimonial-slide img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to Content</a>
+
+    <header role="banner">
+        <div id="top">
+            <img id="logo" src="https://thcf.bing.com/th/id/OIP.iKl7XJdApT4JaRcMKyLbjgAAAA?w=229&h=229&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+                alt="Government Polytechnic Nainital Logo" loading="lazy">
+            <div>
+                <h1 id="Top-Head" lang="hi">राजकीय पॉलीटेक्निक नैनीताल</h1>
+                <h3 id="Est">Established in 1957</h3>
+            </div>
+        </div>
+        <nav role="navigation" aria-label="Main Navigation">
+            <div class="nav-container">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li>
+                        <a href="#services" aria-label="Services Dropdown">Services</a>
+                        <ul class="dropdown">
+                            <li><a href="#nss">NSS</a></li>
+                            <li><a href="#ncc">NCC</a></li>
+                            <li><a href="#hostel">Hostel</a></li>
+                            <li><a href="#library">Library</a></li>
+                            <li><a href="#smart-classes">Smart Classes</a></li>
+                            <li><a href="#vision-mission">Vision & Mission</a></li>
+                            <li><a href="#about-us">About Us</a></li>
+                            <li><a href="#academic-body">Academic Body</a></li>
+                            <li><a href="#anti-ragging">Anti-Ragging</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="search-toggle" aria-label="Toggle Search" tabindex="0">🔍</button>
+                <form class="search-form" id="searchForm">
+                    <input type="text" placeholder="Search..." aria-label="Search the site">
+                </form>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content" role="main">
+        <h1 id="AntiRagging" class="animate-on-scroll">Say No to Ragging</h1>
+
+        <section id="about" class="animate-on-scroll">
+            <h2>About the Campaign</h2>
+            <p>At Government Polytechnic Nainital, we are committed to eradicating ragging and fostering a safe, inclusive campus environment. Our anti-ragging campaign educates students about the legal and social consequences of ragging, supports victims, and promotes harmony among the student community.</p>
+        </section>
+
+        <section id="testimonials" class="animate-on-scroll">
+            <h2>Student Voices</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-slides">
+                    <div class="testimonial-slide">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop&fm=webp"
+                            alt="Rahul Sharma, student" loading="lazy">
+                        <p>"Joining the anti-ragging campaign made me feel part of a safer campus community."</p>
+                        <h3>Rahul Sharma, Civil Engineering</h3>
+                    </div>
+                    <div class="testimonial-slide">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop&fm=webp"
+                            alt="Priya Mehra, student" loading="lazy">
+                        <p>"This campaign empowered me to stand against ragging and support my peers."</p>
+                        <h3>Priya Mehra, Electronics Engineering</h3>
+                    </div>
+                    <div class="testimonial-slide">
+                        <img src="https://images.unsplash.com/photo-1519085360753-afccb062f7e8?q=80&w=200&auto=format&fit=crop&fm=webp"
+                            alt="Vikram Singh, student" loading="lazy">
+                        <p>"The pledge inspired me to promote respect and unity on campus."</p>
+                        <h3>Vikram Singh, Mechanical Engineering</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-nav">
+                <span class="active" aria-label="Slide 1"></span>
+                <span aria-label="Slide 2"></span>
+                <span aria-label="Slide 3"></span>
+            </div>
+        </section>
+
+        <section id="infographic" class="animate-on-scroll" aria-live="polite">
+            <h2>Campaign Impact</h2>
+            <div class="infographic-grid">
+                <div class="infographic-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <span>90%</span>
+                    <p>Students feel safer on campus</p>
+                </div>
+                <div class="infographic-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2m22-2v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span>100+</span>
+                    <p>Pledges taken against ragging</p>
+                </div>
+                <div class="infographic-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                        <path d="M12 2v6h10M12 22v-6H2m0-10h20"/>
+                    </svg>
+                    <span>1000+</span>
+                    <p>Students reached through awareness</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="animate-on-scroll">
+            <h2>Downloadable Resources</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-11.svg" alt="PDF icon" loading="lazy">
+                    <h3>Anti-Ragging Guidelines</h3>
+                    <p>Official UGC guidelines on ragging prevention.</p>
+                    <a href="#download-guidelines" aria-label="Download Anti-Ragging Guidelines">Download</a>
+                </div>
+                <div class="resource-card">
+                    <img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-12.svg" alt="Poster icon" loading="lazy">
+                    <h3>Campaign Poster</h3>
+                    <p>Printable poster for campus awareness.</p>
+                    <a href="#download-poster" aria-label="Download Campaign Poster">Download</a>
+                </div>
+                <div class="resource-card">
+                    <img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-13.svg" alt="Helpline icon" loading="lazy">
+                    <h3>Helpline List</h3>
+                    <p>Contact numbers for ragging support.</p>
+                    <a href="#download-helpline" aria-label="Download Helpline List">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="pledge" class="animate-on-scroll">
+            <h2>Take the Anti-Ragging Pledge</h2>
+            <form id="pledge-form" aria-label="Anti-Ragging Pledge Form">
+                <div class="form-message" id="pledgeMessage"></div>
+                <label for="pledge-name">Your Name</label>
+                <input type="text" id="pledge-name" name="name" required aria-describedby="pledge-name-error">
+                <span class="error-message" id="pledge-name-error">Please enter a valid name (min 2 characters).</span>
+                <label for="pledge-email">Your Email</label>
+                <input type="email" id="pledge-email" name="email" required aria-describedby="pledge-email-error">
+                <span class="error-message" id="pledge-email-error">Please enter a valid email address.</span>
+                <button type="submit">Take Pledge</button>
+            </form>
+        </section>
+
+        <section id="pledge-counter" class="animate-on-scroll" aria-live="polite">
+            <h2>Pledge Takers</h2>
+            <p>Join <span id="pledgeCount">0</span> students in our commitment to a ragging-free campus!</p>
+        </section>
+
+        <section id="report" class="animate-on-scroll">
+            <h2>Report an Incident</h2>
+            <form id="report-form" aria-label="Incident Report Form">
+                <div class="form-message" id="reportMessage"></div>
+                <label for="report-name">Your Name (Optional)</label>
+                <input type="text" id="report-name" name="name" aria-describedby="report-name-error">
+                <span class="error-message" id="report-name-error">Please enter a valid name (min 2 characters).</span>
+                <label for="report-email">Your Email (Optional)</label>
+                <input type="email" id="report-email" name="email" aria-describedby="report-email-error">
+                <span class="error-message" id="report-email-error">Please enter a valid email address.</span>
+                <label for="report-incident">Describe the Incident</label>
+                <textarea id="report-incident" name="incident" required aria-describedby="report-incident-error"></textarea>
+                <span class="error-message" id="report-incident-error">Please provide a description (min 10 characters).</span>
+                <label>
+                    <input type="checkbox" id="anonymous" name="anonymous"> Report Anonymously
+                </label>
+                <button type="submit">Submit Report</button>
+            </form>
+        </section>
+
+        <div class="cta animate-on-scroll">
+            <a href="#join-campaign" aria-label="Join the Anti-Ragging Campaign">Join the Campaign</a>
+        </div>
+
+        <section id="quick-links" class="animate-on-scroll">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="#nss"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-11.svg" alt="NSS icon" loading="lazy">NSS</a></li>
+                <li><a href="#ncc"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-12.svg" alt="NCC icon" loading="lazy">NCC</a></li>
+                <li><a href="#hostel"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-13.svg" alt="Hostel icon" loading="lazy">Hostel</a></li>
+                <li><a href="#library"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-11.svg" alt="Library icon" loading="lazy">Library</a></li>
+                <li><a href="#smart-classes"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-12.svg" alt="Smart Classes icon" loading="lazy">Smart Classes</a></li>
+                <li><a href="https://www.example.com" target="_blank"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-13.svg" alt="Website icon" loading="lazy">Official Website</a></li>
+            </ul>
+        </section>
+
+        <section id="contact" class="animate-on-scroll">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:support@gpnainital.ac.in">support@gpnainital.ac.in</a></p>
+            <p>Phone: +91 9412345678, +91 7509123456</p>
+            <p>Address: Sherwani, Nainital, Uttarakhand 263001</p>
+            <p>National Anti-Ragging Helpline: 1800-180-5522</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div id="footer">
+            <div>
+                <div id="divfoot">
+                    Government Polytechnic Nainital, established in 1957, recently celebrated its 67th anniversary of
+                    imparting high-quality technical education to students in Uttarakhand. Affiliated with the Uttarakhand
+                    Board of Technical Education, Roorkee.
+                </div>
+            </div>
+            <div>
+                <h2 id="Git">Get in Touch</h2>
+                <div id="contact_us">
+                    Sherwani, Nainital<br>
+                    Uttarakhand 263001<br>
+                    +91 9412345678<br>
+                    +91 7509123456<br>
+                    govtpoly_ntl@rediffmail.com
+                </div>
+            </div>
+            <div class="footer-links">
+                <h2>Useful Links</h2>
+                <ul>
+                    <li><a href="#privacy-policy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                    <li><a href="#sitemap">Sitemap</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <h4 id="author">Developed by [Your Name]</h4>
+        <p id="Copyright">© 2025 GOVERNMENT POLYTECHNIC NAINITAL. All Rights Reserved.</p>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to Top" tabindex="0">↑</button>
+
+    <script defer>
+        // Dropdown Functionality
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropdownParents = document.querySelectorAll(".nav-menu li > a");
+
+            dropdownParents.forEach(parent => {
+                const dropdown = parent.nextElementSibling;
+
+                if (dropdown && dropdown.classList.contains("dropdown")) {
+                    parent.setAttribute("aria-haspopup", "true");
+                    parent.setAttribute("aria-expanded", "false");
+
+                    parent.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        document.querySelectorAll(".dropdown.show").forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove("show");
+                                otherDropdown.previousElementSibling.setAttribute("aria-expanded", "false");
+                            }
+                        });
+                        dropdown.classList.toggle("show");
+                        parent.setAttribute("aria-expanded", dropdown.classList.contains("show"));
+                    });
+
+                    parent.addEventListener("keydown", function (event) {
+                        if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            dropdown.classList.toggle("show");
+                            parent.setAttribute("aria-expanded", dropdown.classList.contains("show"));
+                        }
+                    });
+
+                    dropdown.addEventListener("click", function (event) {
+                        event.stopPropagation();
+                    });
+                }
+            });
+
+            document.addEventListener("click", function (event) {
+                const dropdowns = document.querySelectorAll(".dropdown.show");
+                dropdowns.forEach(dropdown => {
+                    const parent = dropdown.previousElementSibling;
+                    if (!parent.contains(event.target) && !dropdown.contains(event.target)) {
+                        dropdown.classList.remove("show");
+                        parent.setAttribute("aria-expanded", "false");
+                    }
+                });
+            });
+        });
+
+        // Hamburger Menu Functionality
+        document.getElementById("hamburger").addEventListener("click", function () {
+            this.classList.toggle("active");
+            document.getElementById("navMenu").classList.toggle("active");
+        });
+
+        // Search Functionality
+        const searchToggle = document.querySelector(".search-toggle");
+        const searchForm = document.getElementById("searchForm");
+        searchToggle.addEventListener("click", () => {
+            searchForm.classList.toggle("active");
+            if (searchForm.classList.contains("active")) {
+                searchForm.querySelector("input").focus();
+            }
+        });
+
+        searchForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const query = searchForm.querySelector("input").value.toLowerCase();
+            document.querySelectorAll("section, h1, h2, p").forEach(el => {
+                if (el.textContent.toLowerCase().includes(query)) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                    el.style.background = "rgba(173, 20, 87, 0.1)";
+                    setTimeout(() => el.style.background = "", 2000);
+                }
+            });
+        });
+
+        // Testimonial Slider
+        const slides = document.querySelector(".testimonial-slides");
+        const slideElements = document.querySelectorAll(".testimonial-slide");
+        const navDots = document.querySelectorAll(".testimonial-nav span");
+        let currentSlide = 0;
+        const slideCount = slideElements.length;
+
+        function updateSlider() {
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            navDots.forEach((dot, index) => {
+                dot.classList.toggle("active", index === currentSlide);
+                dot.setAttribute("aria-current", index === currentSlide ? "true" : "false");
+            });
+        }
+
+        navDots.forEach((dot, index) => {
+            dot.addEventListener("click", () => {
+                currentSlide = index;
+                updateSlider();
+            });
+
+            dot.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    currentSlide = index;
+                    updateSlider();
+                }
+            });
+        });
+
+        function autoSlide() {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlider();
+        }
+
+        let slideInterval = setInterval(autoSlide, 5000);
+
+        document.querySelector(".testimonial-slider").addEventListener("mouseenter", () => {
+            clearInterval(slideInterval);
+        });
+
+        document.querySelector(".testimonial-slider").addEventListener("mouseleave", () => {
+            slideInterval = setInterval(autoSlide, 5000);
+        });
+
+        // Touch Swipe Support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slides.addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slides.addEventListener("touchend", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                currentSlide = (currentSlide + 1) % slideCount;
+            } else if (touchEndX - touchStartX > 50) {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            }
+            updateSlider();
+        });
+
+        // Pledge Counter
+        const pledgeCountElement = document.getElementById("pledgeCount");
+        let pledgeCount = localStorage.getItem("pledgeCount") ? parseInt(localStorage.getItem("pledgeCount")) : 0;
+        pledgeCountElement.textContent = pledgeCount;
+
+        function incrementPledgeCount() {
+            pledgeCount++;
+            localStorage.setItem("pledgeCount", pledgeCount);
+            pledgeCountElement.textContent = pledgeCount;
+        }
+
+        // Pledge Form Validation
+        const pledgeForm = document.getElementById("pledge-form");
+        const pledgeMessage = document.getElementById("pledgeMessage");
+
+        pledgeForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            const name = document.getElementById("pledge-name");
+            const email = document.getElementById("pledge-email");
+            const nameError = document.getElementById("pledge-name-error");
+            const emailError = document.getElementById("pledge-email-error");
+
+            [nameError, emailError].forEach(error => error.classList.remove("show"));
+            [name, email].forEach(input => input.setAttribute("aria-invalid", "false"));
+
+            if (name.value.trim().length < 2) {
+                nameError.classList.add("show");
+                name.setAttribute("aria-invalid", "true");
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                emailError.classList.add("show");
+                email.setAttribute("aria-invalid", "true");
+                isValid = false;
+            }
+
+            if (isValid) {
+                pledgeMessage.className = "form-message success show";
+                pledgeMessage.textContent = "Pledge taken successfully!";
+                incrementPledgeCount();
+                pledgeForm.reset();
+                setTimeout(() => pledgeMessage.classList.remove("show"), 3000);
+            } else {
+                pledgeMessage.className = "form-message error show";
+                pledgeMessage.textContent = "Please fix the errors above.";
+                setTimeout(() => pledgeMessage.classList.remove("show"), 3000);
+            }
+        });
+
+        // Report Form Validation
+        const reportForm = document.getElementById("report-form");
+        const reportMessage = document.getElementById("reportMessage");
+
+        reportForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            const name = document.getElementById("report-name");
+            const email = document.getElementById("report-email");
+            const incident = document.getElementById("report-incident");
+            const anonymous = document.getElementById("anonymous");
+            const nameError = document.getElementById("report-name-error");
+            const emailError = document.getElementById("report-email-error");
+            const incidentError = document.getElementById("report-incident-error");
+
+            [nameError, emailError, incidentError].forEach(error => error.classList.remove("show"));
+            [name, email, incident].forEach(input => input.setAttribute("aria-invalid", "false"));
+
+            if (!anonymous.checked && name.value.trim().length < 2 && name.value.trim()) {
+                nameError.classList.add("show");
+                name.setAttribute("aria-invalid", "true");
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!anonymous.checked && email.value.trim() && !emailRegex.test(email.value.trim())) {
+                emailError.classList.add("show");
+                email.setAttribute("aria-invalid", "true");
+                isValid = false;
+            }
+
+            if (incident.value.trim().length < 10) {
+                incidentError.classList.add("show");
+                incident.setAttribute("aria-invalid", "true");
+                isValid = false;
+            }
+
+            if (isValid) {
+                reportMessage.className = "form-message success show";
+                reportMessage.textContent = "Report submitted successfully!";
+                reportForm.reset();
+                setTimeout(() => reportMessage.classList.remove("show"), 3000);
+            } else {
+                reportMessage.className = "form-message error show";
+                reportMessage.textContent = "Please fix the errors above.";
+                setTimeout(() => reportMessage.classList.remove("show"), 3000);
+            }
+        });
+
+        // Scroll Animations
+        const animateElements = document.querySelectorAll(".animate-on-scroll");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // Back-to-Top Functionality
+        const backToTop = document.querySelector(".back-to-top");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add("show");
+            } else {
+                backToTop.classList.remove("show");
+            }
+        });
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        backToTop.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
+
+        // Font Awesome for Social Media Icons
+        const fontAwesome = document.createElement("script");
+        fontAwesome.src = "https://kit.fontawesome.com/a076d05399.js";
+        fontAwesome.crossOrigin = "anonymous";
+        document.head.appendChild(fontAwesome);
+    </script>
+</body>
+
+</html>

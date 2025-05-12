@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Government Polytechnic Nainital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== Color Scheme ===== */
+        :root {
+            --primary: #8e24aa; /* Deep violet */
+            --secondary: #7e5597; /* Deep plum */
+            --bg: #fff0f5; /* Lavender blush */
+            --text: #2a2a2a; /* Dark gray */
+            --accent: #ad1457; /* Crimson rose */
+            --light-blush: #fce4ec; /* Very light blush */
+            --white: #ffffff;
+        }
+
+        /* Reset & Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #top {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        #logo {
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s;
+        }
+
+        #logo:hover {
+            transform: scale(1.05);
+        }
+
+        #Top-Head {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        #Est {
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .contact, .time, .location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .contact img, .time img, .location img {
+            width: 20px;
+            height: 20px;
+        }
+
+        nav {
+            background: transparent;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            position: relative;
+            margin-left: 0.8rem;
+        }
+
+        .nav-menu li a {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a:focus {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            min-width: 180px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .dropdown.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown li a {
+            color: var(--text);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .dropdown li a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .search-toggle {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .search-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .search-form {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-form.active {
+            display: block;
+        }
+
+        .search-form input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        #About_Us {
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            text-decoration: underline;
+            margin: 2rem 0;
+        }
+
+        #about_us, #discription {
+            background: var(--light-blush);
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        #about_us:hover, #discription:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        #Genesis {
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            text-align: center;
+            text-decoration: overline;
+            margin: 2rem 0;
+        }
+
+        /* Carousel Section */
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(142, 36, 170, 0.8);
+            color: var(--white);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .carousel-controls button:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .carousel-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent);
+        }
+
+        /* News/Events Section */
+        #news-events {
+            margin: 2rem 0;
+        }
+
+        #news-events h2 {
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: var(--light-blush);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card p {
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .view-all {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .view-all a {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .view-all a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        /* Testimonial Slider */
+        #testimonials {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        #testimonials h2 {
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-item {
+            min-width: 33.33%;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card p {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .testimonial-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .testimonial-controls button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .testimonial-controls button:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        /* Quick Links Section */
+        #quick-links {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        #quick-links h2 {
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #quick-links ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        #quick-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            padding: 0.75rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            color: var(--accent);
+            transition: background 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        #quick-links li a img {
+            width: 20px;
+            height: 20px;
+        }
+
+        #quick-links li a:hover {
+            background: var(--accent);
+            color: var(--white);
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        /* CTA Button */
+        .cta {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta a {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .cta a:hover,
+        .cta a:focus {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        /* Contact Form */
+        #contact-form {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 2rem auto;
+            font-size: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        input[aria-invalid="true"],
+        textarea[aria-invalid="true"] {
+            border-color: var(--accent);
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        input[type="submit"] {
+            background: var(--primary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover,
+        input[type="submit"]:focus {
+            background: var(--secondary);
+            outline: none;
+        }
+
+        .form-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .form-message {
+            display: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .form-message.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .error-message {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-top: -0.8rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+            border-radius: 12px;
+        }
+
+        #footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            text-align: left;
+        }
+
+        #divfoot {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        #Git {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            text-decoration: underline;
+            margin-bottom: 1rem;
+        }
+
+        #contact_us {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-media a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-media a:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        #author {
+            color: var(--white);
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            margin: 1rem 0;
+        }
+
+        #Copyright {
+            color: var(--white);
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 2px solid var(--accent);
+            padding-top: 1rem;
+        }
+
+        /* Back-to-Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            #top, .nav-container, main, footer {
+                max-width: 1200px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .carousel-item img {
+                height: 350px;
+            }
+
+            #footer {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-links {
+                grid-column: 1 / -1;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+                padding: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0.4rem 0;
+            }
+
+            .dropdown {
+                position: static;
+                background: var(--white);
+                backdrop-filter: none;
+                box-shadow: none;
+            }
+
+            .search-form {
+                width: 100%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            #logo {
+                width: 70px;
+                height: 70px;
+            }
+
+            #Top-Head {
+                font-size: 1.4rem;
+            }
+
+            #About_Us {
+                font-size: 2rem;
+            }
+
+            #about_us, #discription {
+                font-size: 1.1rem;
+                margin: 0 0.8rem;
+            }
+
+            .carousel-item img {
+                height: 250px;
+            }
+
+            .contact, .time, .location {
+                font-size: 0.8rem;
+            }
+
+            #contact-form {
+                padding: 1rem;
+            }
+
+            .testimonial-item {
+                min-width: 100%;
+            }
+
+            #footer {
+                grid-template-columns: 1fr;
+            }
+
+            .social-media {
+                justify-content: center;
+            }
+
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-item img {
+                height: 200px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to Content</a>
+
+    <header role="banner">
+        <div id="top">
+            <img id="logo" src="https://thcf.bing.com/th/id/OIP.iKl7XJdApT4JaRcMKyLbjgAAAA?w=229&h=229&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+                alt="Government Polytechnic Nainital Logo" loading="lazy">
+            <div>
+                <h1 id="Top-Head" lang="hi">राजकीय पॉलीटेक्निक नैनीताल</h1>
+                <h3 id="Est">Established in 1957</h3>
+            </div>
+            <div class="contact">
+                <img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-11.svg" alt="Phone icon for Government Polytechnic Nainital contact" loading="lazy">
+                <p class="phone">+91 9412345678<br>+91 7509123456</p>
+            </div>
+            <div class="time">
+                <img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-12.svg" alt="Clock icon for Government Polytechnic Nainital operating hours" loading="lazy">
+                <p>Monday to Saturday 9:00 AM to 5:00 PM</p>
+            </div>
+            <div class="location">
+                <img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-13.svg" alt="Location icon for Government Polytechnic Nainital address" loading="lazy">
+                <p>Sherwani, Nainital, Uttarakhand 263001</p>
+            </div>
+        </div>
+        <nav role="navigation" aria-label="Main Navigation">
+            <div class="nav-container">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li>
+                        <a href="#services" aria-label="Services Dropdown">Services</a>
+                        <ul class="dropdown">
+                            <li><a href="Nssform.html">NSS</a></li>
+                            <li><a href="Nccform.html">NCC</a></li>
+                            <li><a href="Hostel.html">Hostel</a></li>
+                            <li><a href="Library.html">Library</a></li>
+                            <li><a href="Smartclass.html">Smart Classes</a></li>
+                            <li><a href="vision_&_mission.html">Vision & Mission</a></li>
+                            <li><a href="about us.html">About Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="search-toggle" aria-label="Toggle Search" tabindex="0">🔍</button>
+                <form class="search-form" id="searchForm">
+                    <input type="text" placeholder="Search..." aria-label="Search the site">
+                </form>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content" role="main">
+        <h1 id="About_Us" class="animate-on-scroll">About Us</h1>
+
+        <section id="about_us" class="animate-on-scroll">
+            <p>
+                Government Polytechnic Nainital, established in 1957, is a premier technical institute in Uttarakhand, dedicated to providing high-quality education and fostering innovation. Affiliated with the Uttarakhand Board of Technical Education, Roorkee, the institute offers diploma programs in various engineering and technical disciplines, equipping students with practical skills and theoretical knowledge to excel in their careers.
+            </p>
+        </section>
+
+        <section class="carousel animate-on-scroll" role="region" aria-label="Institute Showcase" aria-live="polite">
+            <div class="carousel-inner" id="carouselInner">
+                <div class="carousel-item" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop&fm=webp"
+                        alt="Campus view of Government Polytechnic Nainital" loading="lazy">
+                    <div class="carousel-caption">
+                        <h3>Our Campus</h3>
+                        <p>A serene environment for learning and growth.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1516321310764-65f0f5e7e8b4?q=80&w=2070&auto=format&fit=crop&fm=webp"
+                        alt="Students in technical workshop at Government Polytechnic Nainital" loading="lazy">
+                    <div class="carousel-caption">
+                        <h3>Hands-On Learning</h3>
+                        <p>Practical training for industry readiness.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1546410531-3f7511a11c30?q=80&w=2070&auto=format&fit=crop&fm=webp"
+                        alt="Graduation ceremony at Government Polytechnic Nainital" loading="lazy">
+                    <div class="carousel-caption">
+                        <h3>Celebrating Success</h3>
+                        <p>Empowering students for a bright future.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button onclick="prevSlide()" aria-label="Previous Slide" tabindex="0">❮</button>
+                <button onclick="nextSlide()" aria-label="Next Slide" tabindex="0">❯</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </section>
+
+        <section id="discription" class="animate-on-scroll">
+            <h2 id="Genesis">Genesis</h2>
+            <p>
+                Founded in 1957, Government Polytechnic Nainital has a rich history of over six decades, evolving from a modest technical school to a leading polytechnic institute in Uttarakhand. Established to meet the growing demand for skilled technicians in post-independence India, the institute has consistently adapted its curriculum to align with industry needs, fostering innovation and entrepreneurship among its students.
+            </p>
+        </section>
+
+        <section id="news-events" class="animate-on-scroll">
+            <h2>Recent Events</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                        alt="Technical workshop at Government Polytechnic Nainital" loading="lazy">
+                    <h3>Technical Workshop 2025</h3>
+                    <p>Students participated in a hands-on workshop on advanced robotics, enhancing their technical skills.</p>
+                </div>
+                <div class="news-card">
+                        alt="67th Anniversary Celebration" loading="lazy">
+                    <h3>67th Anniversary</h3>
+                    <p>Celebrated 67 years of excellence with alumni, faculty, and students in a grand event.</p>
+                </div>
+                <div class="news-card">
+                        alt="Campus Cleanliness Drive" loading="lazy">
+                    <h3>Cleanliness Drive</h3>
+                    <p>NSS volunteers led a campus cleanliness initiative, promoting environmental awareness.</p>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="#all-events">View All Events</a>
+            </div>
+        </section>
+
+        <section id="testimonials" class="animate-on-scroll">
+            <h2>Testimonials</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-inner" id="testimonialInner">
+                    <div class="testimonial-item">
+                        <div class="testimonial-card">
+                            <p>"The hands-on training at G.P Nainital prepared me for a successful career in engineering."</p>
+                            <h4>Rahul Sharma, Alumnus</h4>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-card">
+                            <p>"The faculty's dedication and modern facilities made my learning experience exceptional."</p>
+                            <h4>Priya Singh, Student</h4>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-card">
+                            <p>"G.P Nainital fostered my entrepreneurial spirit, helping me start my own tech venture."</p>
+                            <h4>Aman Verma, Alumnus</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button onclick="prevTestimonial()" aria-label="Previous Testimonial" tabindex="0">❮</button>
+                <button onclick="nextTestimonial()" aria-label="Next Testimonial" tabindex="0">❯</button>
+            </div>
+        </section>
+
+        <div class="cta animate-on-scroll">
+            <a href="#explore-more" aria-label="Explore More About Government Polytechnic Nainital">Explore More</a>
+        </div>
+
+        <section id="quick-links" class="animate-on-scroll">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="Nssform.html"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-11.svg" alt="NSS icon" loading="lazy">NSS</a></li>
+                <li><a href="Nccform.html"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-12.svg" alt="NCC icon" loading="lazy">NCC</a></li>
+                <li><a href="Hostel.html"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-13.svg" alt="Hostel icon" loading="lazy">Hostel</a></li>
+                <li><a href="Library.html"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-11.svg" alt="Library icon" loading="lazy">Library</a></li>
+                <li><a href="Smartclass.html"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-12.svg" alt="Smart Classes icon" loading="lazy">Smart Classes</a></li>
+                <li><a href="https://www.example.com" target="_blank"><img src="http://ggpalmora.org.in/wp-content/uploads/2022/12/Frame-13.svg" alt="Website icon" loading="lazy">Official Website</a></li>
+            </ul>
+        </section>
+
+        <section id="contact" class="animate-on-scroll">
+            <h2>Contact Us</h2>
+            <form id="contact-form" action="#" method="post">
+                <p class="form-desc">Reach out to us for inquiries about our programs or facilities.</p>
+                <div class="form-message" id="formMessage"></div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required aria-describedby="name-error">
+                <span class="error-message" id="name-error">Please enter a valid name.</span>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required aria-describedby="email-error">
+                <span class="error-message" id="email-error">Please enter a valid email address.</span>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required aria-describedby="message-error"></textarea>
+                <span class="error-message" id="message-error">Please enter a message.</span>
+                <input type="submit" value="Send Message">
+            </form>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div id="footer">
+            <div>
+                <div id="divfoot">
+                    Government Polytechnic Nainital, established in 1957, recently celebrated its 67th anniversary of
+                    imparting high-quality education to the students of Uttarakhand. G.P Nainital is associated with
+                    Uttarakhand Board of Technical Education, Roorkee.
+                </div>
+            </div>
+            <div>
+                <h2 id="Git">Get in Touch</h2>
+                <div id="contact_us">
+                    Sherwani, Nainital<br>
+                    Uttarakhand 263001<br>
+                    +91 9412345678<br>
+                    +91 7509123456<br>
+                    govtpoly_ntl@rediffmail.com
+                </div>
+            </div>
+            <div class="footer-links">
+                <h2>Useful Links</h2>
+                <ul>
+                    <li><a href="#privacy-policy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                    <li><a href="#sitemap">Sitemap</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <h4 id="author">Developed by Sneha Bisht ❤️</h4>
+        <p id="Copyright">© GOVERNMENT POLYTECHNIC NAINITAL. All Rights Reserved.</p>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to Top" tabindex="0">↑</button>
+
+    <script defer>
+        // Dropdown Functionality
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropdownParents = document.querySelectorAll(".nav-menu li > a");
+
+            dropdownParents.forEach(parent => {
+                const dropdown = parent.nextElementSibling;
+
+                if (dropdown && dropdown.classList.contains("dropdown")) {
+                    parent.setAttribute("aria-haspopup", "true");
+                    parent.setAttribute("aria-expanded", "false");
+
+                    parent.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        document.querySelectorAll(".dropdown.show").forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove("show");
+                                otherDropdown.previousElementSibling.setAttribute("aria-expanded", "false");
+                            }
+                        });
+                        dropdown.classList.toggle("show");
+                        parent.setAttribute("aria-expanded", dropdown.classList.contains("show"));
+                    });
+
+                    parent.addEventListener("keydown", function (event) {
+                        if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            dropdown.classList.toggle("show");
+                            parent.setAttribute("aria-expanded", dropdown.classList.contains("show"));
+                        }
+                    });
+
+                    dropdown.addEventListener("click", function (event) {
+                        event.stopPropagation();
+                    });
+                }
+            });
+
+            document.addEventListener("click", function (event) {
+                const dropdowns = document.querySelectorAll(".dropdown.show");
+                dropdowns.forEach(dropdown => {
+                    const parent = dropdown.previousElementSibling;
+                    if (!parent.contains(event.target) && !dropdown.contains(event.target)) {
+                        dropdown.classList.remove("show");
+                        parent.setAttribute("aria-expanded", "false");
+                    }
+                });
+            });
+        });
+
+        // Hamburger Menu Functionality
+        document.getElementById("hamburger").addEventListener("click", function () {
+            this.classList.toggle("active");
+            document.getElementById("navMenu").classList.toggle("active");
+        });
+
+        // Search Functionality
+        const searchToggle = document.querySelector(".search-toggle");
+        const searchForm = document.getElementById("searchForm");
+        searchToggle.addEventListener("click", () => {
+            searchForm.classList.toggle("active");
+            if (searchForm.classList.contains("active")) {
+                searchForm.querySelector("input").focus();
+            }
+        });
+
+        searchForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const query = searchForm.querySelector("input").value.toLowerCase();
+            // Simulated search: highlight matching sections
+            document.querySelectorAll("section, h1, h2, p").forEach(el => {
+                if (el.textContent.toLowerCase().includes(query)) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                    el.style.background = "rgba(173, 20, 87, 0.1)";
+                    setTimeout(() => el.style.background = "", 2000);
+                }
+            });
+        });
+
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".carousel-item");
+        const totalSlides = slides.length;
+        let carouselInterval = setInterval(nextSlide, 5000);
+
+        function showSlide(index) {
+            const carouselInner = document.getElementById("carouselInner");
+            carouselInner.style.transform = `translateX(-${index * 100}%)`;
+            slides.forEach((slide, i) => {
+                slide.setAttribute("aria-hidden", i !== index);
+            });
+            document.querySelectorAll(".carousel-dot").forEach((dot, i) => {
+                dot.classList.toggle("active", i === index);
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Create Carousel Dots
+        const carouselDots = document.getElementById("carouselDots");
+        slides.forEach((_, i) => {
+            const dot = document.createElement("span");
+            dot.classList.add("carousel-dot");
+            if (i === 0) dot.classList.add("active");
+            dot.addEventListener("click", () => {
+                showSlide(i);
+                clearInterval(carouselInterval);
+                carouselInterval = setInterval(nextSlide, 5000);
+            });
+            carouselDots.appendChild(dot);
+        });
+
+        // Pause on Hover
+        const carousel = document.querySelector(".carousel");
+        carousel.addEventListener("mouseenter", () => clearInterval(carouselInterval));
+        carousel.addEventListener("mouseleave", () => carouselInterval = setInterval(nextSlide, 5000));
+
+        document.querySelectorAll(".carousel-controls button").forEach(button => {
+            button.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    if (button.getAttribute("aria-label") === "Previous Slide") {
+                        prevSlide();
+                    } else {
+                        nextSlide();
+                    }
+                    clearInterval(carouselInterval);
+                    carouselInterval = setInterval(nextSlide, 5000);
+                }
+            });
+        });
+
+        // Testimonial Slider Functionality
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll(".testimonial-item");
+        const totalTestimonials = testimonials.length;
+
+        function showTestimonial(index) {
+            const testimonialInner = document.getElementById("testimonialInner");
+            testimonialInner.style.transform = `translateX(-${index * 33.33}%)`;
+            currentTestimonial = index;
+        }
+
+        function nextTestimonial() {
+            if (currentTestimonial < totalTestimonials - 3) {
+                currentTestimonial++;
+            } else {
+                currentTestimonial = 0;
+            }
+            showTestimonial(currentTestimonial);
+        }
+
+        function prevTestimonial() {
+            if (currentTestimonial > 0) {
+                currentTestimonial--;
+            } else {
+                currentTestimonial = totalTestimonials - 3;
+            }
+            showTestimonial(currentTestimonial);
+        }
+
+        setInterval(nextTestimonial, 7000);
+
+        // Contact Form Validation
+        const contactForm = document.getElementById("contact-form");
+        const formMessage = document.getElementById("formMessage");
+
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            const name = document.getElementById("name");
+            const email = document.getElementById("email");
+            const message = document.getElementById("message");
+
+            const nameError = document.getElementById("name-error");
+            const emailError = document.getElementById("email-error");
+            const messageError = document.getElementById("message-error");
+
+            // Reset errors
+            [nameError, emailError, messageError].forEach(error => error.classList.remove("show"));
+            [name, email, message].forEach(input => input.setAttribute("aria-invalid", "false"));
+
+            // Validate Name
+            if (name.value.trim().length < 2) {
+                nameError.classList.add("show");
+                name.setAttribute("aria-invalid", "true");
+                isValid = false;
+            }
+
+            // Validate Email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                emailError.classList.add("show");
+                email.setAttribute("aria-invalid", "true");
+                isValid = false;
+            }
+
+            // Validate Message
+            if (message.value.trim().length < 10) {
+                messageError.classList.add("show");
+                message.setAttribute("aria-invalid", "true");
+                isValid = false;
+            }
+
+            // Show Feedback
+            if (isValid) {
+                formMessage.className = "form-message success show";
+                formMessage.textContent = "Message sent successfully!";
+                contactForm.reset();
+                setTimeout(() => formMessage.classList.remove("show"), 3000);
+            } else {
+                formMessage.className = "form-message error show";
+                formMessage.textContent = "Please fix the errors above.";
+                setTimeout(() => formMessage.classList.remove("show"), 3000);
+            }
+        });
+
+        // Scroll Animations
+        const animateElements = document.querySelectorAll(".animate-on-scroll");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // Back-to-Top Functionality
+        const backToTop = document.querySelector(".back-to-top");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add("show");
+            } else {
+                backToTop.classList.remove("show");
+            }
+        });
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        backToTop.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
+
+        // Font Awesome for Social Media Icons (CDN can be replaced with local assets)
+        const fontAwesome = document.createElement("script");
+        fontAwesome.src = "https://kit.fontawesome.com/a076d05399.js";
+        fontAwesome.crossOrigin = "anonymous";
+        document.head.appendChild(fontAwesome);
+    </script>
+</body>
+
+</html>

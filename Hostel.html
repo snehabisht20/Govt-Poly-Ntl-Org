@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel - Government Polytechnic Nainital</title>
+
+    <style>
+        /* General Styling */
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            border-bottom: 5px solid #3498db;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #sec1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #logo {
+            width: 200px;
+            height: 200px;
+            max-width: 100%;
+        }
+
+        #gp {
+            margin: 20px 0;
+            font-size: 2rem;
+            color: #ecf0f1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        #hr {
+            width: 100%;
+            max-width: 460px;
+            height: 2px;
+            background-color: #3498db;
+            margin: 10px auto;
+        }
+
+        /* Carousel Slider */
+        .carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(52, 152, 219, 0.8);
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background: #3498db;
+            color: #ecf0f1;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .carousel-controls button:hover {
+            background: #1abc9c;
+            transform: scale(1.1);
+        }
+
+        /* Main Content Styling */
+        #sec2 {
+            margin: 3rem auto;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        #Hostel, #Rules, #Fee, #GPN {
+            text-align: center;
+            font-size: 1.75rem;
+            color: #2980b9;
+            border-bottom: 2px solid #3498db;
+            margin: 2rem 0 1rem;
+        }
+
+        #AboutHostel {
+            text-align: center;
+            font-size: 1.25rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            color: #34495e;
+            padding: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .gpnh {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            margin: 1rem 0;
+        }
+
+        .gpnh li {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            list-style-type: none;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        /* Amenities Section */
+        #amenities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .amenity-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .amenity-card h3 {
+            color: #2980b9;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Quick Links Section */
+        #quick-links ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        #quick-links li a {
+            color: #2980b9;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        #quick-links li a:hover {
+            background: #1abc9c;
+            color: #ecf0f1;
+            transform: scale(1.05);
+        }
+
+        /* Contact Form */
+        #contact-form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        #contact-form h2 {
+            color: #2980b9;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        #contact-form label {
+            display: block;
+            margin: 0.5rem 0;
+            color: #34495e;
+        }
+
+        #contact-form input, #contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #contact-form button {
+            background: #3498db;
+            color: #ecf0f1;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        #contact-form button:hover {
+            background: #1abc9c;
+            transform: scale(1.05);
+        }
+
+        /* Footer Styling */
+        #sec4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 3rem auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 1200px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 12px;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        #GP {
+            font-size: 1.75rem;
+            color: #1abc9c;
+            text-decoration: underline;
+            margin: 0;
+        }
+
+        #divfoot {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ecf0f1;
+        }
+
+        #Git {
+            font-size: 1.5rem;
+            color: #ecf0f1;
+            margin: 0;
+        }
+
+        #contact_us {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ecf0f1;
+            text-align: right;
+        }
+
+        #author {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #ecf0f1;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 1rem 0;
+        }
+
+        #Copyright {
+            font-size: 1rem;
+            text-align: center;
+            color: #1abc9c;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #sec4 {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            #contact_us {
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            #logo {
+                width: 150px;
+                height: 150px;
+            }
+
+            #gp {
+                font-size: 1.5rem;
+            }
+
+            #Hostel, #Rules, #Fee, #GPN {
+                font-size: 1.5rem;
+            }
+
+            #AboutHostel, .gpnh, #amenities, #quick-links, #contact-form {
+                font-size: 1rem;
+            }
+
+            .carousel-item img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header role="banner">
+        <section id="sec1">
+            <img id="logo" src="https://thcf.bing.com/th/id/OIP.iKl7XJdApT4JaRcMKyLbjgAAAA?w=229&h=229&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+                alt="Government Polytechnic Nainital Logo" loading="lazy">
+            <div>
+                <h1 id="gp">राजकीय पॉलीटेक्निक नैनीताल Government Polytechnic Nainital</h1>
+                <hr id="hr">
+            </div>
+        </section>
+    </header>
+
+    <main role="main">
+        <section id="sec2">
+            <!-- Carousel Slider -->
+            <div class="carousel" role="region" aria-label="Hostel Highlights Carousel">
+                <div class="carousel-inner" id="carouselInner">
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1618219740975-dce3fe6e8f09?q=80&w=2070&auto=format&fit=crop"
+                            alt="Cozy hostel room with modern furnishings" loading="lazy">
+                        <div class="carousel-caption">
+                            <h3>Comfortable Rooms</h3>
+                            <p>Airy and well-furnished spaces for a home-like stay.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1513696789098-f13103f2b0ce?q=80&w=2070&auto=format&fit=crop"
+                            alt="Students playing sports in hostel grounds" loading="lazy">
+                        <div class="carousel-caption">
+                            <h3>Recreational Activities</h3>
+                            <p>Engage in sports, yoga, and music events.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1576696079277-578e3e3a6b37?q=80&w=2070&auto=format&fit=crop"
+                            alt="Hygienic hostel dining area" loading="lazy">
+                        <div class="carousel-caption">
+                            <h3>Dining Facilities</h3>
+                            <p>Enjoy tasty and nutritious meals daily.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevSlide()" aria-label="Previous Slide">❮</button>
+                    <button onclick="nextSlide()" aria-label="Next Slide">❯</button>
+                </div>
+            </div>
+
+            <div>
+                <h1 id="Hostel">HOSTEL LIKE A HOME</h1>
+                <div id="AboutHostel">
+                    Hostel is provided for GIRLS and BOYS inside the campus. Students are provided with adequate facilities
+                    to make them feel at home. Their stay in the hostel enables them to imbibe a different lifestyle and
+                    involve them in activities including Yoga, Meditation, Sports, Music, etc., suiting individual tastes
+                    and preferences.
+                </div>
+            </div>
+
+            <div>
+                <h2 id="GPN">GPN HOSTEL IS EQUIPPED WITH:</h2>
+                <ul class="gpnh">
+                    <li>24 hours electricity and water supply</li>
+                    <li>Green refreshing surroundings to relax</li>
+                    <li>First aid facilities and visit of doctors on call</li>
+                    <li>Airy and well-furnished rooms</li>
+                    <li>Hygienic, tasty, and nourishing food for inmates</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 id="Rules">HOSTEL RULES:</h2>
+                <ul class="gpnh">
+                    <li>Hostel fee is to be paid in advance during the start of each session.</li>
+                    <li>Hostel fee is non-refundable in case of expulsion from the hostel by management.</li>
+                    <li>Shifting of furniture from one room to another is not allowed.</li>
+                    <li>No interchange of rooms is permitted without written permission from the hostel warden.</li>
+                    <li>Students are not allowed to stay in hostel rooms during class timings.</li>
+                    <li>Morning assembly and exercises are compulsory for all hostlers; however, relaxation/exemption may
+                        be given in case of physical disability on a case-by-case basis.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 id="Fee">HOSTEL FEE</h2>
+                <ul class="gpnh">
+                    <li>Hostel fees are determined annually. Please contact the administration for current rates.</li>
+                </ul>
+            </div>
+
+            <!-- Amenities Section -->
+            <div id="amenities">
+                <h2 style="text-align: center; color: #2980b9;">Hostel Amenities</h2>
+                <div class="amenity-card">
+                    <h3>High-Speed Wi-Fi</h3>
+                    <p>Stay connected with reliable internet access.</p>
+                </div>
+                <div class="amenity-card">
+                    <h3>24/7 Security</h3>
+                    <p>Ensuring safety with round-the-clock surveillance.</p>
+                </div>
+                <div class="amenity-card">
+                    <h3>Laundry Services</h3>
+                    <p>Convenient laundry facilities for students.</p>
+                </div>
+            </div>
+
+            <!-- Quick Links Section -->
+            <div id="quick-links">
+                <h2 style="text-align: center; color: #2980b9;">Quick Links</h2>
+                <ul>
+                    <li><a href="#AboutHostel">About Hostel</a></li>
+                    <li><a href="#Rules">Hostel Rules</a></li>
+                    <li><a href="#Fee">Hostel Fee</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Form -->
+            <div id="contact-form">
+                <h2>Contact Us</h2>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <button type="submit" onclick="submitForm()">Submit</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <section id="sec4">
+            <div>
+                <h1 id="GP">Government Polytechnic Nainital</h1>
+                <div id="divfoot">
+                    Government Polytechnic Nainital, established in 1957, recently celebrated its 67th anniversary of
+                    imparting high-quality education to the students of Uttarakhand. G.P Nainital is associated with
+                    Uttarakhand Board of Technical Education, Roorkee.
+                </div>
+            </div>
+            <div>
+        
+                <p id="contact_us">
+                    Sherwani, Nainital<br>
+                    Uttarakhand 263001<br>
+                    05942-236251<br>
+                    govtpoly_ntl@rediffmail.com
+                </p>
+            </div>
+        </section>
+        <h4 id="author">Developed by [Sneha Bisht]</h4>
+        <p id="Copyright">© GOVERNMENT POLYTECHNIC NAINITAL. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            const carouselInner = document.getElementById('carouselInner');
+            carouselInner.style.transform = `translateX(-${index * 100}%)`;
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Auto-rotate every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Initialize first slide
+        showSlide(currentSlide);
+
+        // Contact Form Submission (Placeholder)
+        function submitForm() {
+            alert('Form submitted! This is a placeholder. Add backend logic to handle form data.');
+        }
+    </script>
+</body>
+
+</html>
